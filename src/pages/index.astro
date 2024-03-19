@@ -1,0 +1,74 @@
+---
+import Default from "../layouts/Default.astro";
+import Home from "../components/Home.astro";
+import Skills from "../components/Skills.astro";
+import ProjectFilter from "../components/ProjectFilter.jsx";
+
+const info = {
+	welcome: "Welcome to my portfolio",
+	area: "Full Stack Web Developer",
+	name: "FarfetchDev",
+	about: "Hi there! I'm a full stack web developer and programmer analyst with experience in creating custom web applications. I'm passionate about designing and developing innovative and scalable solutions that meet end users' needs. Additionally, I'm always seeking out new challenges to continue learning and growing in my career as a developer.",
+};
+---
+
+<Default title="Home">
+	<Home info={info} />
+	<Skills />
+	<section id="projects">
+		<div class="center-x title"><h1>Projects</h1></div>
+		<ProjectFilter client:load />
+	</section>
+	<section id="contact">
+		<div class="center-x title"><h1>Contact Me</h1></div>
+	</section>
+	<button id="sendEmail">Send</button>
+	<style>
+		@media screen and (max-width: 500px) {
+			.title {
+				font-size: 1.3rem;
+				font-weight: bold;
+			}
+		}
+
+		canvas {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			z-index: -1;
+		}
+	</style>
+	<!-- <script is:inline>
+	if (
+		localStorage.theme === "dark" ||
+		(!("theme" in localStorage) &&
+			window.matchMedia("(prefers-color-scheme: dark)").matches)
+	) {
+		document.documentElement.classList.add("dark");
+	} else {
+		document.documentElement.classList.remove("dark");
+	}
+</script> -->
+</Default>
+<script src="https://smtpjs.com/v3/smtp.js">
+	console.log(window);
+	var btn = document.getElementById("sendEmail");
+	btn.addEventListener("click", () => {
+		Email.send({
+			SecureToken: "a285680b-4dce-4867-80b3-2304810a2e5c",
+			To: "farfetchdev@hotmail.com",
+			From: "farfandavid34@gmail.com",
+			Subject: "This is the subject",
+			Body: "And this is the body",
+			Attachments: [
+				{
+					name: "smtpjs.png",
+					path: "https://networkprogramming.files.wordpress.com/2017/11/smtpjs.png",
+				},
+			],
+		}).then((message) => alert(message));
+		console.log("Email sent");
+	});
+</script>

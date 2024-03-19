@@ -1,0 +1,94 @@
+---
+import Navbar from "../components/Navbar.astro";
+const { title, description } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>{title || "Title"}</title>
+        <link
+            href="https://fonts.googleapis.com/css?family=Oxanium&display=swap"
+            rel="stylesheet"
+        />
+        <!-- Option 1: Include in HTML -->
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css"
+        />
+        <link
+            rel="stylesheet"
+            type="text/css"
+            href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css"
+        />
+        <script src="https://smtpjs.com/v3/smtp.js"></script>
+    </head>
+    <body>
+        <Navbar />
+        <main id="main">
+            <slot />
+        </main>
+    </body>
+</html>
+<style is:global>
+    :root {
+        --primary: #007bff;
+        --secondary: #6c757d;
+        --success: #28a745;
+        --info: #17a2b8;
+        --warning: #ffc107;
+        --danger: #dc3545;
+        --light: #f8f9fa;
+        --dark: #343a40;
+        --navbar-height: 68px;
+    }
+    * {
+        box-sizing: border-box;
+    }
+    html {
+        padding: 0;
+        margin: 0;
+        color: white;
+        font-family: "Oxanium", sans-serif;
+        scroll-behavior: smooth;
+        scroll-snap-type: y proximity;
+    }
+    body {
+        margin: 0;
+        padding: 0;
+        background: #2e2e52;
+    }
+    ::-webkit-scrollbar {
+        display: none;
+    }
+
+    section {
+        height: calc(100dvh);
+        max-height: 100dvh;
+        width: 100dvw;
+        min-width: 100dvw;
+        scroll-snap-align: center;
+    }
+    .title {
+        font-size: 1.8rem;
+        font-weight: bold;
+    }
+    .center-x {
+        display: flex;
+        justify-content: center;
+    }
+
+    section > h1 {
+        margin: 0;
+    }
+
+    @media screen and (max-width: 500px) {
+        .title {
+            font-size: 1.3rem;
+            font-weight: bold;
+        }
+    }
+</style>
+<script></script>
