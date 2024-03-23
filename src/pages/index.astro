@@ -2,7 +2,7 @@
 import Default from "../layouts/Default.astro";
 import Home from "../components/Home.astro";
 import Skills from "../components/Skills.astro";
-import ProjectFilter from "../components/ProjectFilter.jsx";
+import ProjectFilter from "../components/ProjectFilter/ProjectFilter.jsx";
 
 const info = {
 	welcome: "Welcome to my portfolio",
@@ -21,8 +21,79 @@ const info = {
 	</section>
 	<section id="contact">
 		<div class="center-x title"><h1>Contact Me</h1></div>
+		<hr />
+		<div class="contact-container">
+			<div class="contact-info">
+				<p>
+					Feel free to reach out to me if you have any questions or
+					would like to work together on a project. I'm always open to
+					new opportunities and connections.
+				</p>
+				<div class="info-data">
+					<div class="info-text">
+						<i class="bi bi-envelope"></i>
+						<a
+							id="email"
+							href="mailto:farfetchdev@hotmail.com"
+							target="_blank"
+							rel="noopener noreferrer"
+						>
+							farfetchdev@hotmail.com
+						</a>
+					</div>
+
+					<button data-copy="email">
+						<i class="bi bi-clipboard"></i>
+					</button>
+				</div>
+				<div class="info-data">
+					<div class="info-text">
+						<i class="bi bi-linkedin"></i>
+						<a
+							id="linkedin"
+							href="https://www.linkedin.com/in/david-dante-farfan/"
+							target="_blank"
+						>
+							/david-dante-farfan
+						</a>
+					</div>
+					<button data-copy="linkedin">
+						<i class="bi bi-clipboard"></i>
+					</button>
+				</div>
+				<div class="info-data">
+					<div class="info-text">
+						<i class="bi bi-github"></i>
+						<a
+							id="github-url"
+							href="https://github.com/farfandavid"
+						>
+							/farfandavid
+						</a>
+					</div>
+
+					<button data-copy="github-url">
+						<i class="bi bi-clipboard"></i>
+					</button>
+				</div>
+			</div>
+			<div class="divider"></div>
+			<form action="">
+				<label for="name">Name:</label>
+				<input type="text" id="name" name="name" required />
+				<label for="email">Email:</label>
+				<input type="email" id="email" name="email" required />
+				<label for="message">Message:</label>
+				<textarea
+					name="message"
+					id="message"
+					cols="30"
+					rows="10"
+					required></textarea>
+				<button type="submit">Send</button>
+			</form>
+		</div>
 	</section>
-	<button id="sendEmail">Send</button>
 	<style>
 		@media screen and (max-width: 500px) {
 			.title {
@@ -39,7 +110,145 @@ const info = {
 			height: 100%;
 			z-index: -1;
 		}
+		.divider {
+			width: 1px;
+			height: 100%;
+			background-color: white;
+			margin: 1rem;
+		}
+		.contact-container {
+			display: flex;
+			justify-content: space-around;
+			align-items: start;
+			height: 80%;
+		}
+
+		.contact-info {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			width: 40%;
+			height: 100%;
+		}
+
+		.contact-info p {
+			margin: 1rem;
+			width: 50%;
+		}
+		.info-data {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			gap: 0.5rem;
+			background-color: #1b1b32b9;
+			padding: 0 1rem;
+			width: 50%;
+			min-width: 400px;
+			border: 1px solid white;
+			margin: 5px;
+		}
+
+		.info-text {
+			display: flex;
+			justify-content: start;
+			align-items: center;
+			gap: 1rem;
+		}
+
+		.info-data button {
+			background-color: transparent;
+			border: none;
+			cursor: pointer;
+			color: white;
+			border: 1px solid white;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			width: 35px;
+			height: 35px;
+		}
+
+		.info-data button:hover {
+			background-color: white;
+			color: black;
+		}
+
+		.info-data button:active {
+			transform: scale(0.9);
+		}
+
+		.info-data button i {
+			font-size: large;
+		}
+
+		.info-data i {
+			font-size: xx-large;
+		}
+
+		.info-data a {
+			font-size: larger;
+			text-decoration: none;
+			color: white;
+			margin: 1rem 0;
+		}
+
+		.info-data a:hover {
+			color: white;
+			text-shadow: 0 0 5px white;
+		}
+
+		form {
+			display: flex;
+			flex-direction: column;
+			width: 40%;
+			height: 100%;
+		}
+
+		form label {
+			font-size: 1.2rem;
+			margin: 0.5rem;
+		}
+
+		form input,
+		form textarea {
+			padding: 0.5rem;
+			margin: 0.5rem;
+			font-size: 1rem;
+			border: 1px solid white;
+			background: transparent;
+			color: white;
+		}
+
+		form button {
+			padding: 0.5rem;
+			margin: 0.5rem;
+			font-size: 1rem;
+			background-color: #1b1b32b9;
+			color: white;
+			border: 1px solid white;
+			cursor: pointer;
+		}
 	</style>
+	<script>
+		const copyButton = document.querySelectorAll(
+			"[data-copy]",
+		) as NodeListOf<HTMLButtonElement>;
+		console.log(copyButton);
+		copyButton.forEach((button) => {
+			button.addEventListener("click", () => {
+				copyText(button.dataset.copy);
+			});
+		});
+		function copyText(dataText) {
+			// Get the text field
+			const copyText = document.getElementById(
+				dataText,
+			) as HTMLAnchorElement;
+			copyText.href.startsWith("mailto")
+				? navigator.clipboard.writeText(copyText.href.slice(7))
+				: navigator.clipboard.writeText(copyText.href);
+		}
+	</script>
 	<!-- <script is:inline>
 	if (
 		localStorage.theme === "dark" ||
@@ -52,23 +261,3 @@ const info = {
 	}
 </script> -->
 </Default>
-<script src="https://smtpjs.com/v3/smtp.js">
-	console.log(window);
-	var btn = document.getElementById("sendEmail");
-	btn.addEventListener("click", () => {
-		Email.send({
-			SecureToken: "a285680b-4dce-4867-80b3-2304810a2e5c",
-			To: "farfetchdev@hotmail.com",
-			From: "farfandavid34@gmail.com",
-			Subject: "This is the subject",
-			Body: "And this is the body",
-			Attachments: [
-				{
-					name: "smtpjs.png",
-					path: "https://networkprogramming.files.wordpress.com/2017/11/smtpjs.png",
-				},
-			],
-		}).then((message) => alert(message));
-		console.log("Email sent");
-	});
-</script>
