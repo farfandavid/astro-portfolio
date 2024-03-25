@@ -21,14 +21,6 @@ const projectsData = [
     url_github: "repository_url",
     url_deploy: "url.com",
     tags: ["#reactjs", "#astro", "#html", "#js"]
-  },
-  {
-    id: 3,
-    title: "Example",
-    url_img: "example.jpg",
-    url_github: "repository_url",
-    url_deploy: "url.com",
-    tags: ["#reactjs", "#astro", "#html", "#js"]
   }
   // Puedes añadir más objetos de proyecto aquí
 ];

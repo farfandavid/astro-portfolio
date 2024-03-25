@@ -35,8 +35,6 @@
     <style>
         .navbar {
             display: flex;
-            justify-content: space-between;
-            overflow: hidden;
             position: fixed;
             top: 0;
             width: 100%;
@@ -44,6 +42,7 @@
             height: var(--navbar-height);
             z-index: 1000;
             transition: height 0.3s;
+            overflow-y: hidden;
         }
 
         .navbar div a {
@@ -108,16 +107,16 @@
             .navbar {
                 flex-direction: column;
                 align-items: center;
-                justify-content: start;
+                justify-content: start !important;
             }
 
             .nav-active {
-                height: 100vh;
+                height: 100vh !important;
                 background-color: #1b1b32ad;
                 transition: height 0.5s;
             }
             nav {
-                display: none;
+                display: flex !important;
                 flex-direction: column;
                 align-items: center;
                 margin-top: 20px;
@@ -126,7 +125,7 @@
 
             .navbar nav a {
                 font-size: 1.5rem;
-                margin-top: 10%;
+                margin-top: 10% !important;
                 border-bottom: 1px solid white;
                 width: 100%;
                 text-align: center;
@@ -135,7 +134,9 @@
             .navbar div button {
                 display: block;
             }
-
+            #button-nav {
+                display: block;
+            }
             .menu-icon {
                 transform: rotate(180deg);
                 transition: transform 0.5s;

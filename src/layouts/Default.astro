@@ -8,6 +8,35 @@ const { title, description } = Astro.props;
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="shortcut icon" href="icon_logo_v2.png" type="image/x-icon" />
+        <meta name="description" content={description || " Description"} />
+        <meta
+            name="keywords"
+            content="HTML, CSS, JavaScript, Astro, ReactJS, TailwindCSS, MongoDB, FullStack Developer, Web Developer, Frontend Developer, Backend Developer, MERN Stack, MEAN Stack, PERN Stack, PEAN Stack, JAMStack, Serverless, Cloud Computing, AWS, GCP, Azure, Firebase, Netlify, Vercel, Heroku, DigitalOcean, Linode, Vultr, Cloudflare, CloudFront"
+        />
+        <meta name="author" content="Farfan David Dante" />
+        <meta name="robots" content="index, service" />
+        <meta name="revisit-after" content="3 days" />
+        <meta name="generator" content="Astro" />
+
+        <!-- Facebook Meta Tags -->
+        <meta property="og:url" content="https://farfetchdev.web.app" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        <meta property="og:image" content="" />
+
+        <!-- Twitter Meta Tags -->
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta property="twitter:domain" content="farfetchdev.web.app" />
+        <meta property="twitter:url" content="https://farfetchdev.web.app" />
+        <meta name="twitter:title" content={title} />
+        <meta name="twitter:description" content={description} />
+        <meta
+            name="twitter:image"
+            content="https://farfetchdev.web.app/assets/img/farfetchdev_logo.png"
+        />
+
         <title>{title || "Title"}</title>
         <link
             href="https://fonts.googleapis.com/css?family=Oxanium&display=swap"
@@ -64,10 +93,10 @@ const { title, description } = Astro.props;
     }
 
     section {
-        height: calc(100dvh);
+        height: 100dvh;
         max-height: 100dvh;
         width: 100dvw;
-        min-width: 100dvw;
+        max-width: 100dvw;
         scroll-snap-align: center;
         padding: 0 20px;
     }
@@ -82,6 +111,12 @@ const { title, description } = Astro.props;
 
     section > h1 {
         margin: 0;
+    }
+
+    main {
+        display: flex;
+        flex-direction: column;
+        width: 100dvw;
     }
 
     @media screen and (max-width: 500px) {
