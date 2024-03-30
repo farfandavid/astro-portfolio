@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { Email } from "../../utils/smtp.js";
 import { FilterOptions } from "../../utils/FilterOptions.js";
 import Button from "../Button/Button";
 import "./style.css"
@@ -8,19 +7,31 @@ import Card from "../Card/Card.jsx";
 const projectsData = [
   {
     id: 1,
-    title: "Example",
-    url_img: "example.jpg",
-    url_github: "repository_url",
-    url_deploy: "url.com",
-    tags: ["#reactjs", "#astro", "#html", "#js"]
+    title: "Arirock Portofolio",
+    url_img: "/assets/img/projects/arirock.png",
+    url_github: "https://github.com/farfandavid/arirock_portfolio",
+    tags: ["#reactjs", "#html", "#js"]
   },
   {
     id: 2,
-    title: "Example",
-    url_img: "example.jpg",
-    url_github: "repository_url",
-    url_deploy: "url.com",
-    tags: ["#reactjs", "#astro", "#html", "#js"]
+    title: "Comming Soon",
+  },
+  {
+    id: 3,
+    title: "Comming Soon",
+  },
+  {
+    id: 4,
+    title: "Comming Soon",
+  },
+  {
+    id: 5,
+    title: "Comming Soon",
+  }
+  ,
+  {
+    id: 6,
+    title: "Comming Soon",
   }
   // Puedes añadir más objetos de proyecto aquí
 ];
@@ -39,15 +50,16 @@ function ProjectFilter() {
 
 
   return (
-    <div >
+    <div className="project-section">
       <div className="filters" style={{ display: "none" }}>
         <Button key={"0btn"} filter={filter} handleFilterChange={handleFilterChange} dataText="all" style="" /> |
         {FilterOptions.map((option, index) => (
-          <Button key={index + "btn"} filter={filter} handleFilterChange={handleFilterChange} dataText={option} style="colored" />
+          <Button key={index + "btn"} filter={filter} handleFilterChange={handleFilterChange} dataText={option} />
         ))}
+
       </div>
-      <hr />
-      <div className="projects">
+      <hr className="filter-hr" />
+      <div className="projects-container">
         {filteredProjects.map(project => (
           <Card key={project.id + "project"} project={project}></Card>
         ))}

@@ -3,6 +3,7 @@ import Default from "../layouts/Default.astro";
 import Home from "../components/Home.astro";
 import Skills from "../components/Skills.astro";
 import ProjectFilter from "../components/ProjectFilter/ProjectFilter.jsx";
+import ContactForm from "../components/ContactForm/ContactForm.jsx";
 
 const info = {
 	welcome: "Welcome to my portfolio",
@@ -35,7 +36,7 @@ const description = `FarfetchDev is a full stack web developer and programmer an
 					<div class="info-text">
 						<i class="bi bi-envelope"></i>
 						<a
-							id="email"
+							id="email-copy"
 							href="mailto:farfetchdev@hotmail.com"
 							target="_blank"
 							rel="noopener noreferrer"
@@ -44,7 +45,7 @@ const description = `FarfetchDev is a full stack web developer and programmer an
 						</a>
 					</div>
 
-					<button data-copy="email">
+					<button data-copy="email-copy">
 						<i class="bi bi-clipboard"></i>
 					</button>
 				</div>
@@ -52,14 +53,14 @@ const description = `FarfetchDev is a full stack web developer and programmer an
 					<div class="info-text">
 						<i class="bi bi-linkedin"></i>
 						<a
-							id="linkedin"
+							id="linkedin-copy"
 							href="https://www.linkedin.com/in/david-dante-farfan/"
 							target="_blank"
 						>
 							/david-dante-farfan
 						</a>
 					</div>
-					<button data-copy="linkedin">
+					<button data-copy="linkedin-copy">
 						<i class="bi bi-clipboard"></i>
 					</button>
 				</div>
@@ -80,20 +81,7 @@ const description = `FarfetchDev is a full stack web developer and programmer an
 				</div>
 			</div>
 			<div class="divider"></div>
-			<form action="">
-				<label for="name">Name:</label>
-				<input type="text" id="name" name="name" required />
-				<label for="email">Email:</label>
-				<input type="email" id="email" name="email" required />
-				<label for="message">Message:</label>
-				<textarea
-					name="message"
-					id="message"
-					cols="30"
-					rows="10"
-					required></textarea>
-				<button type="submit">Send</button>
-			</form>
+			<ContactForm client:load />
 		</div>
 	</section>
 	<style>
@@ -199,38 +187,16 @@ const description = `FarfetchDev is a full stack web developer and programmer an
 			text-shadow: 0 0 5px white;
 		}
 
-		form {
+		#projects {
 			display: flex;
 			flex-direction: column;
-			width: 40%;
-			margin-top: 5%;
-		}
-
-		form label {
-			font-size: 1.2rem;
-			margin: 0.5rem;
-		}
-
-		form input,
-		form textarea {
-			padding: 0.5rem;
-			margin: 0.5rem;
-			font-size: 1rem;
-			border: 1px solid white;
-			background: transparent;
 			color: white;
+			padding: 2rem 0;
 		}
 
-		form button {
-			padding: 0.5rem;
-			margin: 0.5rem;
-			font-size: 1rem;
-			background-color: #1b1b32b9;
-			color: white;
-			border: 1px solid white;
-			cursor: pointer;
+		#projects .title {
+			height: 15%;
 		}
-
 		@media screen and (max-width: 627px) {
 			.contact-container {
 				display: flex;
@@ -256,23 +222,19 @@ const description = `FarfetchDev is a full stack web developer and programmer an
 			.divider {
 				display: none;
 			}
-
-			form {
-				width: 100%;
-				font-size: 1.1rem;
-			}
 		}
 	</style>
 	<script>
 		const copyButton = document.querySelectorAll(
 			"[data-copy]",
 		) as NodeListOf<HTMLButtonElement>;
-		console.log(copyButton);
+		// Copy text to clipboard
 		copyButton.forEach((button) => {
 			button.addEventListener("click", () => {
 				copyText(button.dataset.copy);
 			});
 		});
+		// Copy text to clipboard
 		function copyText(dataText) {
 			// Get the text field
 			const copyText = document.getElementById(
