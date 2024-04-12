@@ -1,3 +1,7 @@
+---
+import Chart from "./Chart/Chart";
+---
+
 <section id="skills">
     <div class="center-x title"><h1>Skills</h1></div>
     <div class="tools">
@@ -41,11 +45,13 @@
             <i class="devicon-trello-plain colored"></i>
         </fieldset>
     </div>
-    <canvas id="canvas"></canvas>
+    <Chart client:only />
 </section>
 <style>
     #skills {
         color: white;
+        display: flex;
+        flex-direction: column;
     }
 
     #skills .tools {
@@ -64,4 +70,9 @@
     #skills {
         position: relative;
     }
+
+    canvas {
+        background-color: aliceblue;
+    }
 </style>
+<script></script>

@@ -5,8 +5,11 @@
   width: 100%;
 }
 
+/*sadasd*/
 .project-section {
   padding: 0 20px;
+  height: 100%;
+  overflow: hidden;
 }
 
 .projects-container {
@@ -21,6 +24,25 @@
   overflow-y: scroll;
 }
 
+@media screen and (max-width: 627px) {
+  .projects-container {
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    height: 100%;
+    max-height: 100%;
+    overflow: hidden;
+    overflow-y: scroll;
+  }
+
+  .project-section {
+    padding: 0 20px;
+    height: 100%;
+    overflow: hidden;
+  }
+}
 
 .colored[data-text="#reactjs"] {
   color: #61dafb;

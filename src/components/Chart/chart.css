@@ -1,0 +1,17 @@
+.chart-container {
+  height: 100%;
+  width: 100%;
+  max-width: 630px;
+  max-height: 630px;
+  position: absolute;
+  transform: translate(2%, 0);
+  transform-origin: -2050px -200px;
+
+}
+
+@media screen and (max-width: 627px) {
+  .chart-container {
+    transform: translate(-3%, 0);
+    transform-origin: 0 0;
+  }
+}
