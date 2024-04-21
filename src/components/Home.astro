@@ -107,9 +107,10 @@ const { info } = Astro.props;
         margin-top: 0.8rem;
     }
 
-    @media screen and (max-width: 627px) {
+    @media screen and (width <= 627px) {
         #about {
             flex-direction: column-reverse;
+            flex-wrap: nowrap;
         }
     }
 </style>
