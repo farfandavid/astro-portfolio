@@ -45,13 +45,36 @@ import Chart from "./Chart/Chart";
             <i class="devicon-trello-plain colored"></i>
         </fieldset>
     </div>
-    <Chart client:only />
+    <div class="center-x title"><h1>Soft Skills</h1></div>
+    <div class="soft-skills">
+        <div>
+            Teamwork <progress id="file" value="100" max="100"> </progress>
+        </div>
+        <div>
+            Leadership <progress id="file" value="90" max="100"> </progress>
+        </div>
+        <div>
+            Problem Solving <progress id="file" value="90" max="100">
+            </progress>
+        </div>
+        <div>
+            Creativity <progress id="file" value="70" max="100"> </progress>
+        </div>
+        <div>
+            Communication <progress id="file" value="70" max="100"> </progress>
+        </div>
+        <div>
+            Adaptability <progress id="file" value="80" max="100"> </progress>
+        </div>
+    </div>
 </section>
 <style>
     #skills {
         color: white;
         display: flex;
         flex-direction: column;
+        width: 100%;
+        align-items: center;
     }
 
     #skills .tools {
@@ -71,8 +94,44 @@ import Chart from "./Chart/Chart";
         position: relative;
     }
 
-    canvas {
-        background-color: aliceblue;
+    .soft-skills {
+        display: flex;
+        width: 80%;
+        height: auto;
+        flex-wrap: wrap;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .soft-skills > div {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        width: 45%;
+        max-height: 60px;
+        gap: 1rem;
+        justify-content: space-between;
+        font-weight: bold;
+        font-size: x-large;
+    }
+
+    progress {
+        border-radius: 0;
+        width: 70%;
+    }
+    progress::-webkit-progress-bar {
+        background-color: rgba(0, 0, 0, 0);
+        border: 1px solid white;
+        border-radius: 0;
+    }
+    progress::-webkit-progress-value {
+        background-color: #4f4fd3;
+        border-radius: 0;
+    }
+    progress::-moz-progress-bar {
+        /* style rules */
     }
 
     @media screen and (width <= 627px) {
@@ -81,6 +140,30 @@ import Chart from "./Chart/Chart";
         }
         #skills .tools i {
             font-size: 1.2rem;
+        }
+        .soft-skills {
+            display: flex;
+            width: 95%;
+            height: auto;
+            flex-wrap: wrap;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+        }
+        .soft-skills > div {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            gap: 1rem;
+            justify-content: space-between;
+            font-weight: bold;
+            font-size: large;
+        }
+        progress {
+            border-radius: 0;
+            width: 100%;
         }
     }
 </style>
