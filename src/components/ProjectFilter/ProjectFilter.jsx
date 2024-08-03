@@ -7,10 +7,10 @@ import Card from "../Card/Card.jsx";
 const projectsData = [
   {
     id: 1,
-    title: "Arirock Portofolio",
-    url_img: "/assets/img/projects/arirock.png",
-    url_github: "https://github.com/farfandavid/arirock_portfolio",
-    tags: ["#reactjs", "#html", "#js"]
+    title: "SnapMenu",
+    url_img: "https://cdn.snapmenu.online/og.webp",
+    url_deploy: "https://www.snapmenu.online",
+    tags: ["#nodejs", "#astro", "#reactjs", "#html", "#js"]
   },
   {
     id: 2,
