@@ -1,0 +1,119 @@
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
+import { Progress } from "@/components/ui/progress"
+import { Input } from "@/components/ui/input"
+import { Textarea } from "@/components/ui/textarea"
+import { Github, Linkedin, Mail, ExternalLink, Phone, MapPin } from "lucide-react"
+import Image from "next/image"
+import Link from "next/link"
+
+export default function Component() {
+  return (
+    <div className="flex flex-col min-h-screen bg-gray-950 text-gray-100">
+      <header className="px-4 lg:px-6 h-14 flex items-center border-b border-gray-800">
+        <Link className="flex items-center justify-center" href="#">
+          <span className="sr-only">Juan Pérez - Desarrollador Web</span>
+          <span className="font-bold text-lg bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-600">JP</span>
+        </Link>
+        <nav className="ml-auto flex gap-4 sm:gap-6">
+          <Link className="text-sm font-medium hover:text-purple-400 transition-colors" href="#about">
+            Sobre mí
+          </Link>
+          <Link className="text-sm font-medium hover:text-purple-400 transition-colors" href="#skills">
+            Habilidades
+          </Link>
+          <Link className="text-sm font-medium hover:text-purple-400 transition-colors" href="#projects">
+            Proyectos
+          </Link>
+          <Link className="text-sm font-medium hover:text-purple-400 transition-colors" href="#blog">
+            Blog
+          </Link>
+          <Link className="text-sm font-medium hover:text-purple-400 transition-colors" href="#contact">
+            Contacto
+          </Link>
+        </nav>
+      </header>
+      <main className="flex-1">
+        {/* Las secciones anteriores (Hero, About, Skills, Projects, Blog) se mantienen igual */}
+        {/* ... */}
+
+        <section id="contact" className="w-full py-12 md:py-24 lg:py-32 bg-gray-900">
+          <div className="container px-4 md:px-6">
+            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl mb-8 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-600">Contacto</h2>
+            <div className="grid md:grid-cols-2 gap-8">
+              <div className="space-y-4">
+                <h3 className="text-xl font-semibold text-purple-400">Información de Contacto</h3>
+                <div className="flex items-center space-x-3">
+                  <Mail className="text-purple-400" />
+                  <span>juan.perez@email.com</span>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <Phone className="text-purple-400" />
+                  <span>+34 123 456 789</span>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <MapPin className="text-purple-400" />
+                  <span>Madrid, España</span>
+                </div>
+                <div className="flex space-x-4 mt-4">
+                  <Link href="#" className="text-purple-400 hover:text-purple-300">
+                    <Github className="h-6 w-6" />
+                    <span className="sr-only">GitHub</span>
+                  </Link>
+                  <Link href="#" className="text-purple-400 hover:text-purple-300">
+                    <Linkedin className="h-6 w-6" />
+                    <span className="sr-only">LinkedIn</span>
+                  </Link>
+                </div>
+              </div>
+              <div>
+                <h3 className="text-xl font-semibold text-purple-400 mb-4">Envíame un mensaje</h3>
+                <form className="space-y-4">
+                  <div>
+                    <Label htmlFor="name">Nombre</Label>
+                    <Input id="name" className="bg-gray-800 border-gray-700 text-white" placeholder="Tu nombre" />
+                  </div>
+                  <div>
+                    <Label htmlFor="email">Email</Label>
+                    <Input id="email" type="email" className="bg-gray-800 border-gray-700 text-white" placeholder="tu@email.com" />
+                  </div>
+                  <div>
+                    <Label htmlFor="message">Mensaje</Label>
+                    <Textarea id="message" className="bg-gray-800 border-gray-700 text-white" placeholder="Tu mensaje" />
+                  </div>
+                  <Button className="w-full bg-purple-600 hover:bg-purple-700 text-white">Enviar Mensaje</Button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+      <footer className="flex flex-col gap-2 sm:flex-row py-6 w-full shrink-0 items-center px-4 md:px-6 border-t border-gray-800">
+        <p className="text-xs text-gray-400">© 2023 Juan Pérez. Todos los derechos reservados.</p>
+        <nav className="sm:ml-auto flex gap-4 sm:gap-6">
+          <Link className="text-xs hover:text-purple-400 transition-colors" href="#">
+            <span className="sr-only">GitHub</span>
+            <Github className="h-6 w-6" />
+          </Link>
+          <Link className="text-xs hover:text-purple-400 transition-colors" href="#">
+            <span className="sr-only">LinkedIn</span>
+            <Linkedin className="h-6 w-6" />
+          </Link>
+          <Link className="text-xs hover:text-purple-400 transition-colors" href="#">
+            <span className="sr-only">Email</span>
+            <Mail className="h-6 w-6" />
+          </Link>
+        </nav>
+      </footer>
+    </div>
+  )
+}
+
+function Label({ htmlFor, children }) {
+  return (
+    <label htmlFor={htmlFor} className="block text-sm font-medium text-gray-200 mb-1">
+      {children}
+    </label>
+  )
+}

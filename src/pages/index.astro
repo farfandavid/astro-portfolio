@@ -1,247 +1,587 @@
 ---
-import Default from "../layouts/Default.astro";
-import Home from "../components/Home.astro";
-import Skills from "../components/Skills.astro";
-import ProjectFilter from "../components/ProjectFilter/ProjectFilter.jsx";
-import ContactForm from "../components/ContactForm/ContactForm.jsx";
-
-const info = {
-	welcome: "Welcome to my portfolio",
-	area: "Full Stack Web Developer",
-	name: "FarfetchDev",
-	about: "Hi there! I'm a full stack web developer and programmer analyst with experience in creating custom web applications. I'm passionate about designing and developing innovative and scalable solutions that meet end users' needs. Additionally, I'm always seeking out new challenges to continue learning and growing in my career as a developer.",
-};
-
-const description = `FarfetchDev is a full stack web developer and programmer analyst with experience in creating custom web applications.`;
+import CardProject from "../components/CardProject.astro";
+import SkillComponent from "../components/SkillComponent.astro";
+import SoftSkillComponent from "../components/SoftSkillComponent.astro";
+import { projectsData } from "../const";
+import Layout from "../layouts/Layout.astro";
 ---
 
-<Default title="FarfetchDev" description={description}>
-	<Home info={info} />
-	<Skills />
-	<section id="projects">
-		<div class="center-x title"><h1>Projects</h1></div>
-		<ProjectFilter client:load />
-	</section>
-	<section id="contact">
-		<div class="center-x title"><h1>Contact Me</h1></div>
-		<hr />
-		<div class="contact-container">
-			<div class="contact-info">
-				<p>
-					Feel free to reach out to me if you have any questions or
-					would like to work together on a project. I'm always open to
-					new opportunities and connections.
-				</p>
-				<div class="info-data">
-					<div class="info-text">
-						<i class="bi bi-envelope"></i>
-						<a
-							id="email-copy"
-							href="mailto:farfetchdev@hotmail.com"
-							target="_blank"
-							rel="noopener noreferrer"
-						>
-							farfetchdev@hotmail.com
-						</a>
-					</div>
-
-					<button data-copy="email-copy">
-						<i class="bi bi-clipboard"></i>
-					</button>
+<Layout
+	title="FarfetchDev | Home"
+	description="Desarrollador Web Full Stack | Creando experiencias digitales excepcionales"
+>
+	<main class="flex-1">
+		<section
+			id="hero"
+			class="bg-gradient-to-r from-black to-gray-900 h-dvh content-center py-12 px-6"
+		>
+			<div class="flex flex-col items-center space-y-4 text-center">
+				<div class="space-y-2">
+					<h1
+						class="text-4xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none bg-clip-text text-transparent bg-gradient-to-r from-gray-400 to-blue-600"
+					>
+						Farfan David Dante
+					</h1>
+					<h2
+						class="text-2xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none bg-clip-text text-indigo-400"
+					>
+						FarfetchDev
+					</h2>
+					<p class="mx-auto max-w-[700px] text-gray-400 md:text-xl">
+						Desarrollador Web Full Stack | Creando experiencias
+						digitales excepcionales
+					</p>
 				</div>
-				<div class="info-data">
-					<div class="info-text">
-						<i class="bi bi-linkedin"></i>
-						<a
-							id="linkedin-copy"
-							href="https://www.linkedin.com/in/david-dante-farfan/"
-							target="_blank"
-						>
-							/david-dante-farfan
-						</a>
-					</div>
-					<button data-copy="linkedin-copy">
-						<i class="bi bi-clipboard"></i>
-					</button>
-				</div>
-				<div class="info-data">
-					<div class="info-text">
-						<i class="bi bi-github"></i>
-						<a
-							id="github-url"
-							href="https://github.com/farfandavid"
-						>
-							/farfandavid
-						</a>
-					</div>
-
-					<button data-copy="github-url">
-						<i class="bi bi-clipboard"></i>
+				<div>
+					<button
+						class="bg-indigo-600 px-3 py-2 rounded-md hover:bg-blue-600"
+					>
+						Contactame
 					</button>
 				</div>
 			</div>
-			<div class="divider"></div>
-			<ContactForm client:load />
+		</section>
+		<section id="about-me" class="py-12 px-6 md:px-56">
+			<h2
+				class="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl mb-4 bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-gray-600"
+			>
+				Sobre mí
+			</h2>
+			<p class="mt-4 text-gray-400 md:text-xl">
+				Soy un desarrollador web full stack y analista programador con
+				experiencia en la creación de aplicaciones web personalizadas.
+				Me apasiona diseñar y desarrollar soluciones innovadoras y
+				escalables que satisfagan las necesidades de los usuarios
+				finales. Además, siempre estoy buscando nuevos desafíos para
+				seguir aprendiendo y creciendo en mi carrera como desarrollador.
+			</p>
+		</section>
+		<section id="skills" class="py-12 px-6 md:px-56">
+			<h2
+				class="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl mb-4 bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-gray-600"
+			>
+				Habilidades
+			</h2>
+			<div class="grid grid-cols-1 md:grid-cols-2">
+				<div class="w-full">
+					<h3 class="text-xl font-semibold mb-4 text-indigo-400">
+						Habilidades Técnicas
+					</h3>
+					<div class="grid grid-cols-2 md:grid-cols-3">
+						<SkillComponent
+							skill="astro"
+							color="text-indigo-600"
+							icon="devicon-astro-plain"
+						/>
+						<SkillComponent
+							skill="React"
+							color="text-indigo-600"
+							icon="devicon-react-original"
+						/>
+						<SkillComponent
+							skill="Node.js"
+							color="text-indigo-600"
+							icon="devicon-nodejs-plain"
+						/>
+						<SkillComponent
+							skill="Express"
+							color="text-indigo-600"
+							icon="devicon-express-original"
+						/>
+						<SkillComponent
+							skill="MongoDB"
+							color="text-indigo-600"
+							icon="devicon-mongodb-plain"
+						/>
+						<SkillComponent
+							skill="SQL"
+							color="text-indigo-600"
+							icon="devicon-mysql-plain"
+						/>
+						<SkillComponent
+							skill="HTML5"
+							color="text-indigo-600"
+							icon="devicon-html5-plain"
+						/>
+						<SkillComponent
+							skill="CSS3"
+							color="text-indigo-600"
+							icon="devicon-css3-plain"
+						/>
+						<SkillComponent
+							skill="JavaScript"
+							color="text-indigo-600"
+							icon="devicon-javascript-plain"
+						/>
+						<SkillComponent
+							skill="TypeScript"
+							color="text-indigo-600"
+							icon="devicon-typescript-plain"
+						/>
+						<SkillComponent
+							skill="GitHub"
+							color="text-indigo-600"
+							icon="devicon-github-original"
+						/>
+						<SkillComponent
+							skill="AWS"
+							color="text-indigo-600"
+							icon="devicon-amazonwebservices-plain-wordmark"
+						/>
+						<SkillComponent
+							skill="Docker"
+							color="text-indigo-600"
+							icon="devicon-docker-plain"
+						/>
+						<SkillComponent
+							skill="UML"
+							color="text-indigo-600"
+							icon="devicon-unifiedmodelinglanguage-plain"
+						/>
+						<SkillComponent
+							skill="Figma"
+							color="text-indigo-600"
+							icon="devicon-figma-plain"
+						/>
+					</div>
+				</div>
+				<div class="w-full">
+					<h3 class="text-xl font-semibold mb-4 text-indigo-400">
+						Habilidades Blandas
+					</h3>
+					<div class="flex flex-col gap-4">
+						<SoftSkillComponent
+							softSkill="Liderazgo"
+							percentage={90}
+							color="bg-indigo-600"
+						/>
+						<SoftSkillComponent
+							softSkill="Creatividad"
+							percentage={80}
+							color="bg-indigo-600"
+						/>
+						<SoftSkillComponent
+							softSkill="Proactivo"
+							percentage={100}
+							color="bg-indigo-600"
+						/>
+						<SoftSkillComponent
+							softSkill="Autodidacta"
+							percentage={100}
+							color="bg-indigo-600"
+						/>
+						<SoftSkillComponent
+							softSkill="Resolución de problemas"
+							percentage={95}
+							color="bg-indigo-600"
+						/>
+						<SoftSkillComponent
+							softSkill="Trabajo en equipo"
+							percentage={90}
+							color="bg-indigo-600"
+						/>
+						<SoftSkillComponent
+							softSkill="Comunicación"
+							percentage={70}
+							color="bg-indigo-600"
+						/>
+					</div>
+				</div>
+			</div>
+		</section>
+		<section id="projects" class="py-12 px-6 md:px-56">
+			<h2
+				class="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl mb-4 bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-gray-600"
+			>
+				Proyectos
+			</h2>
+			<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+				{
+					projectsData.map((project) => {
+						return (
+							<CardProject
+								id={project.id}
+								title={project.title}
+								description={project.description}
+								tags={project.tags}
+								urlImage={project.urlImage}
+								web={project.web}
+								github={project.github}
+							/>
+						);
+					})
+				}
+			</div>
+		</section>
+		<section id="contact" class="py-12 px-6 md:px-56">
+			<h2
+				class="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl mb-4 bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-gray-600"
+			>
+				Contacto
+			</h2>
+			<div class="grid grid-cols-1 md:grid-cols-2">
+				<div>
+					<h3 class="text-xl font-semibold mb-4 text-indigo-400">
+						Información de Contacto
+					</h3>
+					<div class="max-w-md space-y-3">
+						<div class="flex justify-between hover:underline">
+							<div
+								class="flex items-center md:text-xl gap-1 text-gray-100 uppercase"
+							>
+								<svg
+									viewBox="0 0 24 24"
+									fill="none"
+									xmlns="http://www.w3.org/2000/svg"
+									class="h-7 stroke-indigo-400"
+									><g id="SVGRepo_bgCarrier" stroke-width="0"
+									></g><g
+										id="SVGRepo_tracerCarrier"
+										stroke-linecap="round"
+										stroke-linejoin="round"></g><g
+										id="SVGRepo_iconCarrier"
+									>
+										<path
+											d="M16 12C16 14.2091 14.2091 16 12 16C9.79086 16 8 14.2091 8 12C8 9.79086 9.79086 8 12 8C14.2091 8 16 9.79086 16 12ZM16 12V13.5C16 14.8807 17.1193 16 18.5 16V16C19.8807 16 21 14.8807 21 13.5V12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21H16"
+											stroke-width="2"
+											stroke-linecap="round"
+											stroke-linejoin="round"></path>
+									</g></svg
+								>
+								<a
+									id="email-copy"
+									href="mailto:farfandavid34@gmail.com"
+									target="_blank"
+									rel="noopener noreferrer"
+								>
+									farfandavid34@gmail.com
+								</a>
+							</div>
+							<button
+								data-copy="email-copy"
+								class="bg-indigo-400 hover:bg-indigo-600 rounded p-1"
+							>
+								<svg
+									viewBox="0 0 24 24"
+									fill="none"
+									xmlns="http://www.w3.org/2000/svg"
+									class="h-8 stroke-gray-100"
+									><g id="SVGRepo_bgCarrier" stroke-width="0"
+									></g><g
+										id="SVGRepo_tracerCarrier"
+										stroke-linecap="round"
+										stroke-linejoin="round"></g><g
+										id="SVGRepo_iconCarrier"
+									>
+										<path
+											d="M8 5.00005C7.01165 5.00082 6.49359 5.01338 6.09202 5.21799C5.71569 5.40973 5.40973 5.71569 5.21799 6.09202C5 6.51984 5 7.07989 5 8.2V17.8C5 18.9201 5 19.4802 5.21799 19.908C5.40973 20.2843 5.71569 20.5903 6.09202 20.782C6.51984 21 7.07989 21 8.2 21H15.8C16.9201 21 17.4802 21 17.908 20.782C18.2843 20.5903 18.5903 20.2843 18.782 19.908C19 19.4802 19 18.9201 19 17.8V8.2C19 7.07989 19 6.51984 18.782 6.09202C18.5903 5.71569 18.2843 5.40973 17.908 5.21799C17.5064 5.01338 16.9884 5.00082 16 5.00005M8 5.00005V7H16V5.00005M8 5.00005V4.70711C8 4.25435 8.17986 3.82014 8.5 3.5C8.82014 3.17986 9.25435 3 9.70711 3H14.2929C14.7456 3 15.1799 3.17986 15.5 3.5C15.8201 3.82014 16 4.25435 16 4.70711V5.00005M12 15.5V11C12 10.1716 12.6716 9.5 13.5 9.5C14.3284 9.5 15 10.1716 15 11V15.5C15 17.1569 13.6569 18.5 12 18.5C10.3431 18.5 9 17.1569 9 15.5V11.5"
+											stroke-width="2"
+											stroke-linecap="round"
+											stroke-linejoin="round"></path>
+									</g></svg
+								>
+							</button>
+						</div>
+						<div class="flex justify-between hover:underline">
+							<div
+								class="flex items-center md:text-xl gap-1 text-gray-100 uppercase"
+							>
+								<i
+									class="devicon-linkedin-plain text-indigo-400 text-3xl"
+								></i>
+								<a
+									id="linkedin-copy"
+									href="https://www.linkedin.com/in/david-dante-farfan/"
+									target="_blank"
+								>
+									/david-dante-farfan
+								</a>
+							</div>
+							<button
+								data-copy="linkedin-copy"
+								class="bg-indigo-400 hover:bg-indigo-600 rounded p-1"
+							>
+								<svg
+									viewBox="0 0 24 24"
+									fill="none"
+									xmlns="http://www.w3.org/2000/svg"
+									class="h-8 stroke-gray-100"
+									><g id="SVGRepo_bgCarrier" stroke-width="0"
+									></g><g
+										id="SVGRepo_tracerCarrier"
+										stroke-linecap="round"
+										stroke-linejoin="round"></g><g
+										id="SVGRepo_iconCarrier"
+									>
+										<path
+											d="M8 5.00005C7.01165 5.00082 6.49359 5.01338 6.09202 5.21799C5.71569 5.40973 5.40973 5.71569 5.21799 6.09202C5 6.51984 5 7.07989 5 8.2V17.8C5 18.9201 5 19.4802 5.21799 19.908C5.40973 20.2843 5.71569 20.5903 6.09202 20.782C6.51984 21 7.07989 21 8.2 21H15.8C16.9201 21 17.4802 21 17.908 20.782C18.2843 20.5903 18.5903 20.2843 18.782 19.908C19 19.4802 19 18.9201 19 17.8V8.2C19 7.07989 19 6.51984 18.782 6.09202C18.5903 5.71569 18.2843 5.40973 17.908 5.21799C17.5064 5.01338 16.9884 5.00082 16 5.00005M8 5.00005V7H16V5.00005M8 5.00005V4.70711C8 4.25435 8.17986 3.82014 8.5 3.5C8.82014 3.17986 9.25435 3 9.70711 3H14.2929C14.7456 3 15.1799 3.17986 15.5 3.5C15.8201 3.82014 16 4.25435 16 4.70711V5.00005M12 15.5V11C12 10.1716 12.6716 9.5 13.5 9.5C14.3284 9.5 15 10.1716 15 11V15.5C15 17.1569 13.6569 18.5 12 18.5C10.3431 18.5 9 17.1569 9 15.5V11.5"
+											stroke-width="2"
+											stroke-linecap="round"
+											stroke-linejoin="round"></path>
+									</g></svg
+								>
+							</button>
+						</div>
+						<div class="flex justify-between hover:underline">
+							<div
+								class="flex items-center md:text-xl gap-1 text-gray-100 uppercase"
+							>
+								<i
+									class="devicon-github-original text-indigo-400 text-3xl"
+								></i>
+								<a
+									id="github-copy"
+									href="https://github.com/farfandavid"
+									target="_blank"
+								>
+									/farfandavid
+								</a>
+							</div>
+							<button
+								data-copy="github-copy"
+								class="bg-indigo-400 hover:bg-indigo-600 rounded p-1"
+							>
+								<svg
+									viewBox="0 0 24 24"
+									fill="none"
+									xmlns="http://www.w3.org/2000/svg"
+									class="h-8 stroke-gray-100"
+									><g id="SVGRepo_bgCarrier" stroke-width="0"
+									></g><g
+										id="SVGRepo_tracerCarrier"
+										stroke-linecap="round"
+										stroke-linejoin="round"></g><g
+										id="SVGRepo_iconCarrier"
+									>
+										<path
+											d="M8 5.00005C7.01165 5.00082 6.49359 5.01338 6.09202 5.21799C5.71569 5.40973 5.40973 5.71569 5.21799 6.09202C5 6.51984 5 7.07989 5 8.2V17.8C5 18.9201 5 19.4802 5.21799 19.908C5.40973 20.2843 5.71569 20.5903 6.09202 20.782C6.51984 21 7.07989 21 8.2 21H15.8C16.9201 21 17.4802 21 17.908 20.782C18.2843 20.5903 18.5903 20.2843 18.782 19.908C19 19.4802 19 18.9201 19 17.8V8.2C19 7.07989 19 6.51984 18.782 6.09202C18.5903 5.71569 18.2843 5.40973 17.908 5.21799C17.5064 5.01338 16.9884 5.00082 16 5.00005M8 5.00005V7H16V5.00005M8 5.00005V4.70711C8 4.25435 8.17986 3.82014 8.5 3.5C8.82014 3.17986 9.25435 3 9.70711 3H14.2929C14.7456 3 15.1799 3.17986 15.5 3.5C15.8201 3.82014 16 4.25435 16 4.70711V5.00005M12 15.5V11C12 10.1716 12.6716 9.5 13.5 9.5C14.3284 9.5 15 10.1716 15 11V15.5C15 17.1569 13.6569 18.5 12 18.5C10.3431 18.5 9 17.1569 9 15.5V11.5"
+											stroke-width="2"
+											stroke-linecap="round"
+											stroke-linejoin="round"></path>
+									</g></svg
+								>
+							</button>
+						</div>
+						<div class="flex justify-between hover:underline">
+							<div
+								class="flex items-center md:text-xl gap-1 text-gray-100 uppercase"
+							>
+								<!-- SVG youtube -->
+								<svg
+									viewBox="0 -3 20 20"
+									version="1.1"
+									xmlns="http://www.w3.org/2000/svg"
+									xmlns:xlink="http://www.w3.org/1999/xlink"
+									class="h-7 fill-indigo-400"
+									><g id="SVGRepo_bgCarrier" stroke-width="0"
+									></g><g
+										id="SVGRepo_tracerCarrier"
+										stroke-linecap="round"
+										stroke-linejoin="round"></g><g
+										id="SVGRepo_iconCarrier"
+									>
+										<title>youtube [#ffffff]</title>
+										<desc>Created with Sketch.</desc>
+										<defs> </defs>
+										<g
+											id="Page-1"
+											stroke="none"
+											stroke-width="1"
+											fill-rule="evenodd"
+										>
+											<g
+												id="Dribbble-Light-Preview"
+												transform="translate(-300.000000, -7442.000000)"
+											>
+												<g
+													id="icons"
+													transform="translate(56.000000, 160.000000)"
+												>
+													<path
+														d="M251.988432,7291.58588 L251.988432,7285.97425 C253.980638,7286.91168 255.523602,7287.8172 257.348463,7288.79353 C255.843351,7289.62824 253.980638,7290.56468 251.988432,7291.58588 M263.090998,7283.18289 C262.747343,7282.73013 262.161634,7282.37809 261.538073,7282.26141 C259.705243,7281.91336 248.270974,7281.91237 246.439141,7282.26141 C245.939097,7282.35515 245.493839,7282.58153 245.111335,7282.93357 C243.49964,7284.42947 244.004664,7292.45151 244.393145,7293.75096 C244.556505,7294.31342 244.767679,7294.71931 245.033639,7294.98558 C245.376298,7295.33761 245.845463,7295.57995 246.384355,7295.68865 C247.893451,7296.0008 255.668037,7296.17532 261.506198,7295.73552 C262.044094,7295.64178 262.520231,7295.39147 262.895762,7295.02447 C264.385932,7293.53455 264.28433,7285.06174 263.090998,7283.18289"
+														id="youtube-[#ffffff]"
+													>
+													</path>
+												</g>
+											</g>
+										</g>
+									</g></svg
+								>
+								<a
+									id="youtube-copy"
+									href="https://www.youtube.com/@farfetchdev"
+									target="_blank"
+								>
+									@farfetchdev
+								</a>
+							</div>
+							<button
+								data-copy="youtube-copy"
+								class="bg-indigo-400 hover:bg-indigo-600 rounded p-1"
+							>
+								<svg
+									viewBox="0 0 24 24"
+									fill="none"
+									xmlns="http://www.w3.org/2000/svg"
+									class="h-8 stroke-gray-100"
+									><g id="SVGRepo_bgCarrier" stroke-width="0"
+									></g><g
+										id="SVGRepo_tracerCarrier"
+										stroke-linecap="round"
+										stroke-linejoin="round"></g><g
+										id="SVGRepo_iconCarrier"
+									>
+										<path
+											d="M8 5.00005C7.01165 5.00082 6.49359 5.01338 6.09202 5.21799C5.71569 5.40973 5.40973 5.71569 5.21799 6.09202C5 6.51984 5 7.07989 5 8.2V17.8C5 18.9201 5 19.4802 5.21799 19.908C5.40973 20.2843 5.71569 20.5903 6.09202 20.782C6.51984 21 7.07989 21 8.2 21H15.8C16.9201 21 17.4802 21 17.908 20.782C18.2843 20.5903 18.5903 20.2843 18.782 19.908C19 19.4802 19 18.9201 19 17.8V8.2C19 7.07989 19 6.51984 18.782 6.09202C18.5903 5.71569 18.2843 5.40973 17.908 5.21799C17.5064 5.01338 16.9884 5.00082 16 5.00005M8 5.00005V7H16V5.00005M8 5.00005V4.70711C8 4.25435 8.17986 3.82014 8.5 3.5C8.82014 3.17986 9.25435 3 9.70711 3H14.2929C14.7456 3 15.1799 3.17986 15.5 3.5C15.8201 3.82014 16 4.25435 16 4.70711V5.00005M12 15.5V11C12 10.1716 12.6716 9.5 13.5 9.5C14.3284 9.5 15 10.1716 15 11V15.5C15 17.1569 13.6569 18.5 12 18.5C10.3431 18.5 9 17.1569 9 15.5V11.5"
+											stroke-width="2"
+											stroke-linecap="round"
+											stroke-linejoin="round"></path>
+									</g></svg
+								>
+							</button>
+						</div>
+					</div>
+				</div>
+				<div>
+					<h3 class="text-xl font-semibold mb-4 text-indigo-400">
+						Envíame un mensaje
+					</h3>
+					<form id="contact-form" class="space-y-2">
+						<div>
+							<label for="name">Nombre</label>
+							<input
+								id="name"
+								name="name"
+								class="bg-gray-800 border-gray-700 text-white block w-full p-2 rounded-md"
+								placeholder="Tu nombre"
+							/>
+						</div>
+						<div>
+							<label for="email">Email</label>
+							<input
+								id="email"
+								name="email"
+								type="email"
+								class="bg-gray-800 border-gray-700 text-white block w-full p-2 rounded-md"
+								placeholder="tu@email.com"
+							/>
+						</div>
+						<div>
+							<label for="message">Mensaje</label>
+							<textarea
+								id="message"
+								name="message"
+								class="bg-gray-800 border-gray-700 text-white block w-full p-2 rounded-md"
+								rows="4"
+								placeholder="Tu mensaje"></textarea>
+						</div>
+						<button
+							id="send-message"
+							class="bg-indigo-600 px-3 py-2 rounded-md hover:bg-blue-600 w-full"
+							>Enviar Mensaje</button
+						>
+					</form>
+				</div>
+			</div>
+		</section>
+	</main>
+	<dialog id="dialog">
+		<div
+			class="fixed w-80 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-white bg-slate-800 p-3 text-center space-y-5 rounded-md"
+		>
+			<h1 id="dialog-message">Mensaje</h1>
+			<button
+				id="close-dialog"
+				type="submit"
+				class="bg-indigo-600 px-3 py-2 rounded-md hover:bg-blue-600 w-full"
+				>OK</button
+			>
 		</div>
-	</section>
-	<style>
-		@media screen and (max-width: 500px) {
-			.title {
-				font-size: 1.3rem;
-				font-weight: bold;
-			}
-		}
-
-		canvas {
-			position: absolute;
-			top: 0;
-			left: 0;
-			width: 100%;
-			height: 100%;
-			z-index: -1;
-		}
-		.divider {
-			width: 1px;
-			height: 100%;
-			background-color: white;
-			margin: 1rem;
-		}
-		.contact-container {
-			display: flex;
-			justify-content: space-around;
-			align-items: start;
-			height: 80%;
-		}
-
-		.contact-info {
-			display: flex;
-			flex-direction: column;
-			width: 40%;
-			margin-top: 5%;
-		}
-
-		.contact-info p {
-			margin: 1rem;
-			width: 100%;
-		}
-		.info-data {
-			display: flex;
-			justify-content: space-between;
-			align-items: center;
-			gap: 0.5rem;
-			background-color: #1b1b32b9;
-			padding: 0 1rem;
-			width: 100%;
-			min-width: 350px;
-			border: 1px solid white;
-			margin: 5px;
-		}
-
-		.info-text {
-			display: flex;
-			justify-content: start;
-			align-items: center;
-			gap: 1rem;
-		}
-
-		.info-data button {
-			background-color: transparent;
-			border: none;
-			cursor: pointer;
-			color: white;
-			border: 1px solid white;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			width: 35px;
-			height: 35px;
-		}
-
-		.info-data button:hover {
-			background-color: white;
-			color: black;
-		}
-
-		.info-data button:active {
-			transform: scale(0.9);
-		}
-
-		.info-data button i {
-			font-size: large;
-		}
-
-		.info-data i {
-			font-size: xx-large;
-		}
-
-		.info-data a {
-			font-size: larger;
-			text-decoration: none;
-			color: white;
-			margin: 1rem 0;
-		}
-
-		.info-data a:hover {
-			color: white;
-			text-shadow: 0 0 5px white;
-		}
-
-		#projects {
-			display: flex;
-			flex-direction: column;
-			color: white;
-			padding: 2rem 0;
-		}
-
-		#projects .title {
-			height: 15%;
-		}
-		@media screen and (max-width: 627px) {
-			.contact-container {
-				display: flex;
-				flex-direction: column;
-			}
-
-			.contact-info {
-				width: 100%;
-				margin: 0;
-				gap: 1rem;
-			}
-
-			.contact-info p {
-				width: 100%;
-				margin: 0;
-			}
-
-			.info-data {
-				width: 100%;
-				margin: 0;
-			}
-
-			.divider {
-				display: none;
-			}
-		}
-	</style>
-	<script>
-		const copyButton = document.querySelectorAll(
-			"[data-copy]",
-		) as NodeListOf<HTMLButtonElement>;
-		// Copy text to clipboard
-		copyButton.forEach((button) => {
-			button.addEventListener("click", () => {
-				copyText(button.dataset.copy);
-			});
+	</dialog>
+</Layout>
+<script>
+	import { Email } from "../utils/smtp";
+	const copyButton = document.querySelectorAll(
+		"[data-copy]",
+	) as NodeListOf<HTMLButtonElement>;
+	const tooltip = document.createElement("div");
+	const contactForm = document.getElementById(
+		"contact-form",
+	) as HTMLFormElement;
+	const dialog = document.getElementById("dialog") as HTMLDialogElement;
+	const dialogMessage = document.getElementById(
+		"dialog-message",
+	) as HTMLHeadingElement;
+	const closeDialog = document.getElementById(
+		"close-dialog",
+	) as HTMLButtonElement;
+	closeDialog.addEventListener("click", (e) => {
+		e.preventDefault();
+		console.log("close");
+		dialog.close();
+	});
+	// Copy text to clipboard
+	copyButton.forEach((button) => {
+		button.addEventListener("click", () => {
+			tooltip.classList.add(
+				"absolute",
+				"bg-gray-800",
+				"text-white",
+				"p-2",
+				"rounded",
+				"text-sm",
+			);
+			tooltip.textContent = "Copiado!";
+			button.appendChild(tooltip);
+			setTimeout(() => {
+				tooltip.remove();
+			}, 1000);
+			copyText(button.dataset.copy);
 		});
-		// Copy text to clipboard
-		function copyText(dataText) {
-			// Get the text field
-			const copyText = document.getElementById(
-				dataText,
-			) as HTMLAnchorElement;
-			copyText.href.startsWith("mailto")
-				? navigator.clipboard.writeText(copyText.href.slice(7))
-				: navigator.clipboard.writeText(copyText.href);
+	});
+	// Copy text to clipboard
+	function copyText(dataText: any) {
+		// Get the text field
+		const copyText = document.getElementById(dataText) as HTMLAnchorElement;
+		copyText.href.startsWith("mailto")
+			? navigator.clipboard.writeText(copyText.href.slice(7))
+			: navigator.clipboard.writeText(copyText.href);
+	}
+	const isEmpty = (str: string) => !str || 0 === str.length;
+	contactForm.addEventListener("submit", (e) => {
+		e.preventDefault();
+		const formData = new FormData(contactForm);
+		const name = formData.get("name") as string;
+		const email = formData.get("email") as string;
+		const message = formData.get("message") as string;
+		if (isEmpty(name) || isEmpty(email) || isEmpty(message)) {
+			alert("Por favor, complete todos los campos");
+			return;
 		}
-	</script>
-</Default>
+		const btnSend = document.getElementById(
+			"send-message",
+		) as HTMLButtonElement;
+		btnSend.disabled = true;
+		btnSend.textContent = "Enviando...";
+		Email.send({
+			SecureToken: "d90905b4-e22e-48ef-bae3-c0decd73ec56",
+			To: "farfetchdev@hotmail.com",
+			From: "farfandavid34@gmail.com",
+			Subject: name + "<" + email + ">",
+			Body: message,
+		})
+			.then((message) => {
+				btnSend.disabled = false;
+				btnSend.textContent = "Enviar Mensaje";
+				dialog.showModal();
+				dialogMessage.textContent = message;
+				contactForm.reset();
+			})
+			.catch((error) => {
+				btnSend.disabled = false;
+				btnSend.textContent = "Enviar Mensaje";
+				dialog.showModal();
+				dialogMessage.textContent = error;
+			});
+	});
+</script>

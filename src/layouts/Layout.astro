@@ -1,0 +1,89 @@
+---
+import Header from "../components/Header.astro";
+interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content={description} />
+    <link rel="shortcut icon" href="icon_logo_v2.png" />
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={Astro.url} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content="/icon_logo_v2.png" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={Astro.url} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content="/icon_logo_v2.png" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css"
+    />
+    <title>{title}</title>
+  </head>
+  <body class="bg-gray-900 text-gray-100 flex flex-col min-h-screen relative">
+    <Header />
+    <slot />
+    <footer
+      class="flex flex-col-reverse gap-2 sm:flex-row py-6 w-full shrink-0 items-center px-4 md:px-6 border-t border-gray-800"
+    >
+      <p class="text-xs text-gray-400">
+        © 2023 Farfan David Dante | FarfetchDev. Todos los derechos reservados.
+      </p>
+      <nav class="sm:ml-auto flex gap-4 sm:gap-6">
+        <a
+          class="hover:text-indigo-400 transition-colors"
+          href="https://github.com/farfandavid"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <i class="devicon-github-original text-2xl"></i>
+        </a>
+        <a
+          class="text-xs hover:text-indigo-400 transition-colors"
+          href="https://www.linkedin.com/in/david-dante-farfan/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <i class="devicon-linkedin-plain text-2xl"></i>
+        </a>
+        <a
+          class="text-xs hover:text-indigo-400 transition-colors"
+          href="mailto:farfandavid34@gmail.com"
+          rel="noopener noreferrer"
+        >
+          <!-- SVG Mail -->
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-8 hover:stroke-indigo-400 stroke-gray-100"
+            ><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g
+              id="SVGRepo_tracerCarrier"
+              stroke-linecap="round"
+              stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier">
+              <path
+                d="M16 12C16 14.2091 14.2091 16 12 16C9.79086 16 8 14.2091 8 12C8 9.79086 9.79086 8 12 8C14.2091 8 16 9.79086 16 12ZM16 12V13.5C16 14.8807 17.1193 16 18.5 16V16C19.8807 16 21 14.8807 21 13.5V12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21H16"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"></path>
+            </g></svg
+          >
+        </a>
+      </nav>
+    </footer>
+  </body>
+</html>
