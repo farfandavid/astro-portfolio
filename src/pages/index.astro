@@ -574,7 +574,12 @@ import Layout from "../layouts/Layout.astro";
 				btnSend.disabled = false;
 				btnSend.textContent = "Enviar Mensaje";
 				dialog.showModal();
-				dialogMessage.textContent = message;
+				if (message === "OK") {
+					dialogMessage.textContent = "Mensaje enviado correctamente";
+				} else {
+					dialogMessage.textContent = message;
+				}
+				//dialogMessage.textContent = message;
 				contactForm.reset();
 			})
 			.catch((error) => {
