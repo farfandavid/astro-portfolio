@@ -7,6 +7,12 @@ on:
 jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
+    env:
+      BD_HOST: ${{ secrets.BD_HOST }}
+      BD_USER: ${{ secrets.BD_USER }}
+      BD_PASSWORD: ${{ secrets.BD_PASSWORD }}
+      BD_NAME: ${{ secrets.BD_NAME }}
+      BD_PORT: ${{ secrets.BD_PORT }}
     steps:
       - uses: actions/checkout@v4
       - run: npm ci && npm run build
