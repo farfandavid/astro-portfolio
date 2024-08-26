@@ -1,0 +1,71 @@
+---
+import type { GetStaticPaths } from "astro";
+import { pool } from "../../db/config";
+
+interface Props {
+    id: number;
+    title: string;
+    slug: string;
+    content: string;
+    video_url?: string;
+    image_url?: string;
+    excerpt?: string;
+    tags?: string;
+    status: "draft" | "published";
+    views: number;
+    meta_title?: string;
+    meta_description?: string;
+    meta_keywords?: string;
+    created_at: Date;
+    updated_at: Date;
+}
+
+export const getStaticPaths = (async () => {
+    const [rows] = (await pool.query("SELECT * FROM posts")) as any;
+    const post = rows as Props[];
+    const path = post.map((post) => {
+        return {
+            params: { slug: post.slug },
+            props: {
+                id: post.id,
+                title: post.title,
+                slug: post.slug,
+                content: post.content,
+                video_url: post.video_url,
+                image_url: post.image_url,
+                excerpt: post.excerpt,
+                tags: post.tags,
+                status: post.status,
+                views: post.views,
+                meta_title: post.meta_title,
+                meta_description: post.meta_description,
+                meta_keywords: post.meta_keywords,
+                created_at: post.created_at,
+                updated_at: post.updated_at,
+            },
+        };
+    });
+    return path;
+}) satisfies GetStaticPaths;
+
+const {
+    id,
+    title,
+    content,
+    video_url,
+    image_url,
+    excerpt,
+    tags,
+    status,
+    meta_title,
+    meta_description,
+    meta_keywords,
+    created_at,
+    updated_at,
+} = Astro.props;
+
+const { slug } = Astro.params;
+---
+
+<h1>{title}</h1>
+<p>{content}</p>
