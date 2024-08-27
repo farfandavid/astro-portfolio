@@ -46,23 +46,3 @@ All commands are run from the root of the project, from a terminal:
 ## 👀 Want to learn more?
 
 Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
-import { Resend } from 'resend';
-
-const resend = new Resend('re_4UDFmN5G_EZTxvb8r1jifLDxnL1rjp3Qp');
-
-resend.emails.send({
-  from: 'onboarding@resend.dev',
-  to: 'farfetchdev@hotmail.com',
-  subject: 'Hello World',
-  html: '<p>Congrats on sending your <strong>first email</strong>!</p>'
-});
-
-curl -X POST 'https://api.resend.com/emails' \
-  -H 'Authorization: Bearer re_4UDFmN5G_EZTxvb8r1jifLDxnL1rjp3Qp' \
-  -H 'Content-Type: application/json' \
-  -d $'{
-    "from": "onboarding@resend.dev",
-    "to": "farfetchdev@hotmail.com",
-    "subject": "Hello World",
-    "html": "<p>Congrats on sending your <strong>first email</strong>!</p>"
-  }'
