@@ -1,32 +1,29 @@
 ---
+import { pool } from "../../db/config";
 import Layout from "../../layouts/Layout.astro";
-const posts = [
-    {
-        id: 1,
-        title: "Introducción a TypeScript",
-        slug: "introduccion-a-typescript",
-        content: "En este post, exploraremos los fundamentos de TypeScript...",
-        image_url: "https://placehold.co/600x400",
-        video_url: "https://example.com/video.mp4",
-        excerpt: "Una guía introductoria sobre TypeScript.",
-        tags: "typescript, programación",
-        status: "published",
-        category_id: 3,
-        views: 250,
-        meta_title: "Introducción a TypeScript - Aprende TypeScript",
-        meta_description:
-            "Descubre los conceptos básicos de TypeScript en esta guía introductoria.",
-        meta_keywords: "typescript, guía, tutorial",
-        created_at: "2024-08-25T12:34:56Z",
-        updated_at: "2024-08-25T12:34:56Z",
-    },
-];
+import CardBlog from "../../components/CardBlog.astro";
 
-const formatter = new Intl.DateTimeFormat("es-ES", {
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-});
+interface Data {
+    id: number;
+    title: string;
+    slug: string;
+    content: string;
+    video_url?: string;
+    image_url?: string;
+    excerpt?: string;
+    tags?: string;
+    status: "draft" | "published";
+    views: number;
+    meta_title?: string;
+    meta_description?: string;
+    meta_keywords?: string;
+    created_at: Date;
+    updated_at: Date;
+}
+
+const [rows] = (await pool.query("SELECT * FROM posts")) as any;
+
+const posts = rows as Data[];
 ---
 
 <Layout title="Blog | FarfetchDev" description="Mis Blogs">
@@ -37,44 +34,23 @@ const formatter = new Intl.DateTimeFormat("es-ES", {
             Blogs
         </h2>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div
-                class="bg-gray-800 rounded-md overflow-hidden max-w-md place-self-center relative h-fit min-h-[410px] border border-gray-600"
-            >
-                <img
-                    src={posts[0].image_url}
-                    alt={posts[0].title}
-                    class="object-cover aspect-video"
-                />
-                <div class="p-4 flex flex-col h-full justify-between">
-                    <h3 class="text-xl font-semibold text-indigo-400">
-                        {posts[0].title}
-                    </h3>
-                    <span class="text-indigo-200 text-sm mb-2"
-                        >{formatter.format(new Date(posts[0].created_at))}</span
-                    >
-                    <p class="text-gray-400">
-                        {posts[0].excerpt}
-                        Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                        Esse, hic. Eveniet ipsam non tempore alias iste adipisci
-                        facere, veniam rem deserunt animi expedita nostrum quis corrupti
-                        voluptatem ex corporis odio.
-                    </p>
-                    <a
-                        href={`/blog/${posts[0].slug}`}
-                        class="bg-indigo-600 p-2 mb-5 mt-1 text-center rounded-md hover:bg-indigo-700 transition-colors"
-                        >Leer más</a
-                    >
-                </div>
-                <span
-                    id="tags"
-                    class="space-x-1 absolute bottom-2 left-2 text-indigo-300 px-2"
-                    >{
-                        posts[0].tags.split(",").map((val) => {
-                            return <span>{val}</span>;
-                        })
-                    }</span
-                >
-            </div>
+            {
+                posts.map((post) => {
+                    if (post.status === "published") {
+                        return (
+                            <CardBlog
+                                title={post.title}
+                                created_at={post.created_at}
+                                image_url={post.image_url}
+                                slug={post.slug}
+                                status={post.status}
+                                excerpt={post.excerpt}
+                                tags={post.tags}
+                            />
+                        );
+                    }
+                })
+            }
         </div>
     </main>
 </Layout>

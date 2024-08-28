@@ -1,11 +1,8 @@
----
+<!-- ---
 import type { GetStaticPaths } from "astro";
 import { pool } from "../../db/config";
-import { marked } from "marked";
 import { Code } from "astro:components";
-import MDX from "../../components/Comp.mdx";
-import { escapeHTML, markHTMLString } from "astro/runtime/server/escape.js";
-import { renderJSX } from "astro/runtime/server/jsx.js";
+import { marked } from "marked";
 
 interface Props {
     id: number;
@@ -68,33 +65,11 @@ const {
     created_at,
     updated_at,
 } = Astro.props;
-const markdownObject = marked.lexer(content);
-console.log(markdownObject);
 
-//console.log(new marked.Tokenizer().code(content));
+const markdown = marked.parse(content);
+const { slug } = Astro.params;
 ---
 
-<!doctype html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Document</title>
-    </head>
-    <body>
-        <h1>Hola</h1>
-        {
-            markdownObject.map((val) => {
-                if (val.type === "heading") {
-                    return <h1>{val.text}</h1>;
-                }
-                if (val.type === "paragraph") {
-                    return <p>{val.text}</p>;
-                }
-                if (val.type === "code") {
-                    return <Code code={val.text} lang={val.lang} />;
-                }
-            })
-        }
-    </body>
-</html>
+<h1>{title}</h1>
+<article set:html={markdown} />
+ -->
