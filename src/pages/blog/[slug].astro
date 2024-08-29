@@ -1,11 +1,9 @@
 ---
 import type { GetStaticPaths } from "astro";
 import { pool } from "../../db/config";
-import { marked } from "marked";
+import { marked, type Token } from "marked";
 import { Code } from "astro:components";
-import MDX from "../../components/Comp.mdx";
-import { escapeHTML, markHTMLString } from "astro/runtime/server/escape.js";
-import { renderJSX } from "astro/runtime/server/jsx.js";
+import BlogEntry from "../../layouts/BlogEntry.astro";
 
 interface Props {
     id: number;
@@ -14,7 +12,7 @@ interface Props {
     content: string;
     video_url?: string;
     image_url?: string;
-    excerpt?: string;
+    excerpt: string;
     tags?: string;
     status: "draft" | "published";
     views: number;
@@ -69,32 +67,164 @@ const {
     updated_at,
 } = Astro.props;
 const markdownObject = marked.lexer(content);
-console.log(markdownObject);
-
-//console.log(new marked.Tokenizer().code(content));
 ---
 
-<!doctype html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Document</title>
-    </head>
-    <body>
-        <h1>Hola</h1>
+<BlogEntry title={title} description={excerpt} image_url={image_url || ""}>
+    <main class="w-3/5 mx-auto pt-16 py-12 min-h-screen">
+        <h1
+            class="text-3xl p-2 font-bold tracking-tighter sm:text-4xl md:text-5xl mb-4 bg-clip-text text-transparent bg-gradient-to-r from-gray-400 to-indigo-600 text-center"
+        >
+            {title}
+        </h1>
+        <div class="flex justify-center">
+            <img
+                src={image_url}
+                alt={title}
+                class="w-full h-96 object-cover rounded-lg"
+            />
+        </div>
         {
-            markdownObject.map((val) => {
-                if (val.type === "heading") {
-                    return <h1>{val.text}</h1>;
-                }
-                if (val.type === "paragraph") {
-                    return <p>{val.text}</p>;
-                }
-                if (val.type === "code") {
-                    return <Code code={val.text} lang={val.lang} />;
-                }
-            })
+            () => {
+                const renderToken = (token: any) => {
+                    if (token.type === "heading") {
+                        return (
+                            <h2
+                                id={token.text
+                                    .toLowerCase()
+                                    .replace(/\s/g, "-")}
+                                class="font-bold text-xl"
+                            >
+                                {token.tokens?.map(renderToken)}
+                            </h2>
+                        );
+                    }
+                    if (token.type === "text") {
+                        if (token.tokens) {
+                            return <span>{token.tokens.map(renderToken)}</span>;
+                        }
+                        return <>{token.raw}</>;
+                    }
+                    if (token.type === "space") {
+                        return <br />;
+                    }
+                    if (token.type === "code") {
+                        return <Code code={token.text} lang={token.lang} />;
+                    }
+                    if (token.type === "codespan") {
+                        return (
+                            <span class="bg-gray-600 p-1 rounded-md text-indigo-200">
+                                {token.text}
+                            </span>
+                        );
+                    }
+                    if (token.type === "paragraph") {
+                        return <p>{token.tokens?.map(renderToken)}</p>;
+                    }
+                    if (token.type === "list") {
+                        if (token.ordered) {
+                            return (
+                                <ol class="list-decimal list-inside">
+                                    {token.items?.map(renderToken)}
+                                </ol>
+                            );
+                        }
+                        return (
+                            <ul class=" list-inside">
+                                {token.items?.map(renderToken)}
+                            </ul>
+                        );
+                    }
+                    if (token.type === "list_item") {
+                        if (token.task) {
+                            return (
+                                <li>
+                                    {" "}
+                                    <input
+                                        type="checkbox"
+                                        checked={token.checked}
+                                        disabled
+                                        class="mr-2"
+                                    />{" "}
+                                    {token.tokens.map(renderToken)}
+                                </li>
+                            );
+                        }
+                        return <li>{token.tokens?.map(renderToken)}</li>;
+                    }
+                    if (token.type === "link") {
+                        return (
+                            <a href={token.href}>
+                                {token.tokens?.map(renderToken)}
+                            </a>
+                        );
+                    }
+                    if (token.type === "blockquote") {
+                        return (
+                            <blockquote>
+                                {token.tokens?.map(renderToken)}
+                            </blockquote>
+                        );
+                    }
+                    if (token.type === "strong") {
+                        return (
+                            <strong>{token.tokens?.map(renderToken)}</strong>
+                        );
+                    }
+                    if (token.type === "em") {
+                        return <em>{token.tokens?.map(renderToken)}</em>;
+                    }
+                    if (token.type === "del") {
+                        return <del>{token.tokens?.map(renderToken)}</del>;
+                    }
+                    if (token.type === "hr") {
+                        return <hr />;
+                    }
+                    if (token.type === "table") {
+                        return (
+                            <table>
+                                <thead>
+                                    <tr>
+                                        {token.header?.map((haeder: any) => {
+                                            return <th>{haeder.text}</th>;
+                                        })}
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {token.rows?.map((row: any) => {
+                                        return (
+                                            <tr>
+                                                {row.map((cell: any) => {
+                                                    return (
+                                                        <td>
+                                                            {cell.tokens?.map(
+                                                                renderToken,
+                                                            )}
+                                                        </td>
+                                                    );
+                                                })}
+                                            </tr>
+                                        );
+                                    })}
+                                </tbody>
+                            </table>
+                        );
+                    }
+                    if (token.type === "html") {
+                        return <Fragment set:html={token.text} />;
+                    }
+                    if (token.type === "image") {
+                        return <img src={token.href} alt={token.text} />;
+                    }
+                };
+                return markdownObject.map(renderToken);
+                return JSON.stringify(markdownObject, undefined, 2);
+            }
         }
-    </body>
-</html>
+    </main>
+</BlogEntry>
+<style>
+    a {
+        display: inline-block;
+        color: #3182ce;
+    }
+</style>
