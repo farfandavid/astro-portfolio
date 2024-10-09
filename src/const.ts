@@ -24,6 +24,14 @@ export const projectsData: ProjectData[] = [
         urlImage: "https://cdn.snapmenu.online/103_1x_shots_so.png",
         tags: ["#astro", "#nodejs", "#gemini", "#html", "#js"],
         web: "https://www.aicvanalizer.online"
+    },
+    {
+        id: "ai_gemini_html_generator",
+        title: "AI Gemini HTML Generator",
+        description: "AI Gemini HTML Generator es una aplicación web que permite generar el HTML con la IA de Gemini.",
+        urlImage: "https://cdn.snapmenu.online/aihtmlgenerator.jpeg",
+        tags: ["#astro", "#nodejs", "#gemini", "#html", "#js"],
+        github: "https://github.com/farfandavid/ai_gemini_html_generator"
     }
     // Puedes añadir más objetos de proyecto aquí
 ];

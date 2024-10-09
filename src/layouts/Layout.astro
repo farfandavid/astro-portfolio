@@ -15,6 +15,7 @@ const { title, description } = Astro.props;
     <meta name="viewport" content="width=device-width" />
     <meta name="description" content={description} />
     <link rel="shortcut icon" href="icon_logo_v2.png" />
+    <ViewTransitions />
     <!-- Author -->
     <meta name="author" content="Farfan David Dante" />
     <!-- Open Graph / Facebook -->
@@ -22,12 +23,10 @@ const { title, description } = Astro.props;
     <meta property="og:url" content="https://farfetchdev.web.app/" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <ViewTransitions />
     <meta
       property="og:image"
       content="https://farfetchdev.web.app/icon_logo_v2.png"
     />
-
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content={"https://farfetchdev.web.app/"} />

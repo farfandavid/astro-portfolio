@@ -79,8 +79,13 @@ const {
 const markdownObject = marked.lexer(content);
 ---
 
-<BlogEntry title={title} description={excerpt} image_url={image_url || ""}>
-    <main class="w-3/5 mx-auto pt-16 py-12 min-h-screen">
+<BlogEntry
+    title={title}
+    description={excerpt}
+    image_url={image_url || ""}
+    keywords={meta_keywords || ""}
+>
+    <main class="w-full md:w-3/5 mx-auto px-5 pt-16 py-12 min-h-screen">
         <h1
             class="text-3xl p-2 font-bold tracking-tighter sm:text-4xl md:text-5xl mb-4 bg-clip-text text-transparent bg-gradient-to-r from-gray-400 to-indigo-600 text-center"
         >
@@ -90,7 +95,7 @@ const markdownObject = marked.lexer(content);
             <img
                 src={image_url}
                 alt={title}
-                class="w-full h-96 object-cover rounded-lg"
+                class="w-full max-h-96 object-cover rounded-lg"
             />
         </div>
         <div class="flex justify-center mt-4">
@@ -120,6 +125,21 @@ const markdownObject = marked.lexer(content);
                 })
             }
         </div>
+        <div>
+            {
+                video_url && (
+                    <div class="flex justify-center mt-4">
+                        <iframe
+                            src={video_url}
+                            class="w-full h-96"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen
+                        />
+                    </div>
+                )
+            }
+        </div>
         {
             () => {
                 const renderToken = (token: any) => {
@@ -145,7 +165,13 @@ const markdownObject = marked.lexer(content);
                         return <br />;
                     }
                     if (token.type === "code") {
-                        return <Code code={token.text} lang={token.lang} />;
+                        return (
+                            <Code
+                                code={token.text}
+                                lang={token.lang}
+                                class={"p-2 rounded-md"}
+                            />
+                        );
                     }
                     if (token.type === "codespan") {
                         return (
@@ -222,11 +248,15 @@ const markdownObject = marked.lexer(content);
                     }
                     if (token.type === "table") {
                         return (
-                            <table>
+                            <table class="min-w-full divide-y divide-gray-200">
                                 <thead>
                                     <tr>
                                         {token.header?.map((haeder: any) => {
-                                            return <th>{haeder.text}</th>;
+                                            return (
+                                                <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
+                                                    {haeder.text}
+                                                </th>
+                                            );
                                         })}
                                     </tr>
                                 </thead>
@@ -236,7 +266,7 @@ const markdownObject = marked.lexer(content);
                                             <tr>
                                                 {row.map((cell: any) => {
                                                     return (
-                                                        <td>
+                                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium ">
                                                             {cell.tokens?.map(
                                                                 renderToken,
                                                             )}
@@ -254,7 +284,13 @@ const markdownObject = marked.lexer(content);
                         return <Fragment set:html={token.text} />;
                     }
                     if (token.type === "image") {
-                        return <img src={token.href} alt={token.text} />;
+                        return (
+                            <img
+                                src={token.href}
+                                alt={token.text}
+                                class="mx-auto rounded-md"
+                            />
+                        );
                     }
                 };
                 return markdownObject.map(renderToken);

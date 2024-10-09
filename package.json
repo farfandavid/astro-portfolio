@@ -15,6 +15,7 @@
     "@astrojs/sitemap": "^3.1.6",
     "@astrojs/tailwind": "^5.1.0",
     "astro": "^4.14.5",
+    "astro-portfolio": "file:",
     "firebase-tools": "^13.5.1",
     "marked": "^13.0.3",
     "mysql2": "^3.11.0",
