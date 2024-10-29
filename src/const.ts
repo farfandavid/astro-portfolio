@@ -23,7 +23,8 @@ export const projectsData: ProjectData[] = [
         description: "AI CV Analizer es una aplicación web que permite analizar los CVs con la IA de Gemini y obtener una puntuacion.",
         urlImage: "https://cdn.snapmenu.online/103_1x_shots_so.png",
         tags: ["#astro", "#nodejs", "#gemini", "#html", "#js"],
-        web: "https://www.aicvanalizer.online"
+        web: "https://www.aicvanalizer.online",
+        github: "https://github.com/farfandavid/aicvanalizer"
     },
     {
         id: "ai_gemini_html_generator",
