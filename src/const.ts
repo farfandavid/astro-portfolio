@@ -39,7 +39,7 @@ export const projectsData: ProjectData[] = [
         title: "Xintheria AI",
         description: "Xintheria AI es una aplicación web que permite a los usuarios interactuar con la IA de Xintheria.",
         urlImage: "https://pub-73fb1a1714204ef38ed19ef2f83d89a9.r2.dev/xintheria-en.jpg",
-        tags: ["#astro", "#nodejs", "#xintheria", "#html", "#js"],
+        tags: ["#astro", "#nodejs", "gemini", "deepseek", "#react", "#html", "#js"],
         web: "https://www.xintheria.com",
     }
     // Puedes añadir más objetos de proyecto aquí
